@@ -7,6 +7,7 @@ import {
   InternalServerErrorException,
   Query,
   CacheTTL,
+  Param,
 } from '@nestjs/common';
 import { WordService } from './word.service';
 
@@ -31,5 +32,10 @@ export class WordController {
       page,
       limit,
     });
+  }
+
+  @Get('/:word')
+  getWord(@Param('word') name: string) {
+    return this.wordService.getWord(name);
   }
 }
